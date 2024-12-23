@@ -17,6 +17,16 @@ function Header() {
   )
 }
 
+function MainContent() {
+  return (
+
+    <main>
+      <p>Ici, nous afficherons des informations interessantes :) "</p>
+
+    </main>
+  )
+}
+
 
 function App() {
   const [count, setCount] = useState(0)
