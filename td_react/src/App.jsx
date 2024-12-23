@@ -1,32 +1,70 @@
 import { useState } from 'react'
 import './App.css'
+import { use } from 'react'
 
 
+function Notes() {
+  return (
+    <div>Notes</div>
+  )
+}
+
+function Etudiants() {
+  return (
+    <div>Matieres</div>
+  )
+}
+
+function Matieres() {
+  return (
+    <div>
+      Matieres
+    </div>
+  )
+}
+function Apropos() {
+  return (
+    <div>
+      A propos
+    </div>
+  )
+}
 
 function Menu() {
+  const [menus, setmenus] = useState(['Notes', 'Etudiants', 'Matieres', 'A propos']);
+
+
   function onclick() {
     alert('élément cliqué')
   }
 
   return (
-    <nav className='nav navbar bg-light'>
-      <a className='nav-link' onClick={onclick}>Notes</a>
-      <a className='nav-link' onClick={onclick}>Etudiants</a>
-      <a className='nav-link' onClick={onclick}>Matières</a>
-      <a className='nav-link' onClick={onclick}>A propos</a>
+    <div className="dropdown">
+      <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        Menu
+      </button>
+      <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        {menus.map((menu, index) => (
+          <li key={index}>
+            <a className="dropdown-item" href="#" onClick={() => onclick(menu)}>
+              {menu}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
 
-    </nav>
   )
 }
 
 function Header(props) {
   return (
     <header>
-      <Menu />
       <div>
         <img src="images.jpg" alt="" />
         <h3>Introduction à React</h3>
-        <h6>A la découverte des premières notions de React</h6>
+        <h6>A la découverte des premières notions de React       <Menu />
+        </h6>
       </div>
     </header>
   )
@@ -51,66 +89,7 @@ function MainContent() {
     </main>
   )
 }
-
-function Student({ unique_id, course, student, date, grade }) {
-
-  return (
-    <section>
-      <table className='table'>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Course</th>
-            <th>Student</th>
-            <th>Date</th>
-            <th>grade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{unique_id}</td>
-            <td>{course}</td>
-            <td>
-              <table className='table'>
-                <thead>
-                  <tr>
-                    <th>Id</th>
-                    <th>FirstName</th>
-                    <th>LastName</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{student.id}</td>
-                    <td>{student.firstname}</td>
-                    <td>{student.lastname}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-            <td>{date}</td>
-            <td>{grade}</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  )
-}
-
-function Footer() {
-  const date = new Date();
-  const year = date.getFullYear();
-  return (
-    <footer className='foot'>
-      <div >
-        © {year} - MUTAKA DANIEL, Tous droits réservés.
-      </div>
-    </footer>
-  )
-}
-
-
-function App() {
+function Students() {
   const data = [
     {
       "unique_id": 1,
@@ -224,21 +203,89 @@ function App() {
     },
 
   ];
-  const nombre = Math.floor(Math.random() * 10);
-  const student = data[nombre];
+  const [nombres, setnombres] = useState(Math.floor(Math.random() * 10))
+  const student = data[nombres];
+  return (
+    <div>
+      <Student
+        unique_id={student.unique_id}
+        course={student.course}
+        student={student.student}
+        date={student.date}
+        grade={student.grade}
+      />
+      <div onClick={() => { setnombres(Math.floor(Math.random() * 10)) }} className='btn btn-primary'>Generer </div>
+
+    </div>
+  )
+}
+function Student({ unique_id, course, student, date, grade }) {
+
+  return (
+    <section>
+      <table className='table'>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Course</th>
+            <th>Student</th>
+            <th>Date</th>
+            <th>grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{unique_id}</td>
+            <td>{course}</td>
+            <td>
+              <table className='table'>
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{student.id}</td>
+                    <td>{student.firstname}</td>
+                    <td>{student.lastname}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+            <td>{date}</td>
+            <td>{grade}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  )
+}
+
+function Footer() {
+  const date = new Date();
+  const year = date.getFullYear();
+  return (
+    <footer className='foot'>
+      <div >
+        © {year} - MUTAKA DANIEL, Tous droits réservés.
+      </div>
+    </footer>
+  )
+}
+
+
+function App() {
+
 
 
   return (
     <>
       <div>
         <Header name='test' />
-        <Student
-          unique_id={student.unique_id}
-          course={student.course}
-          student={student.student}
-          date={student.date}
-          grade={student.grade}
-        />
+        <Students />
         <MainContent />
         <Footer />
       </div>
