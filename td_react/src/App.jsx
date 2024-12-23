@@ -38,9 +38,13 @@ function MainContent() {
 }
 
 function Footer() {
+  const date = new Date();
+  const year = date.getFullYear();
   return (
     <footer className='foot'>
-      <div >Tous droits réservés - MUTAKA DANIEL</div>
+      <div >
+        © {year} - MUTAKA DANIEL, Tous droits réservés.
+      </div>
     </footer>
   )
 }
