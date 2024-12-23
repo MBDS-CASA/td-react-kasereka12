@@ -4,11 +4,17 @@ import './App.css'
 
 
 function Menu() {
+  function onclick() {
+    alert('élément cliqué')
+  }
+
   return (
-    <nav>
-      <ul>
-        <li>Notes, Etudiants, Matières, A propos</li>
-      </ul>
+    <nav className='nav navbar bg-light'>
+      <a className='nav-link' onClick={onclick}>Notes</a>
+      <a className='nav-link' onClick={onclick}>Etudiants</a>
+      <a className='nav-link' onClick={onclick}>Matières</a>
+      <a className='nav-link' onClick={onclick}>A propos</a>
+
     </nav>
   )
 }
@@ -16,6 +22,7 @@ function Menu() {
 function Header(props) {
   return (
     <header>
+      <Menu />
       <div>
         <img src="images.jpg" alt="" />
         <h3>Introduction à React</h3>
