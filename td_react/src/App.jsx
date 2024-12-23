@@ -18,10 +18,20 @@ function Header(props) {
 }
 
 function MainContent() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const hour = String(date.getHours()).padStart(2, '0');
+  const minute = String(date.getMinutes()).padStart(2, '0');
+  const second = String(date.getSeconds()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
   return (
 
     <main>
-      <p>Ici, nous afficherons des informations interessantes :) "</p>
+      <p>Ici, nous afficherons des informations interessantes <br />
+        Bonjour, on est le {day}, {month}, {year} et il est {hour}:{minute}:{second}"
+      </p>
 
     </main>
   )
