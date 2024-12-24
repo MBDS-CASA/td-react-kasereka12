@@ -104,12 +104,18 @@ main h2 {
   text-align: left;
 }
 
-#examples menu {
+#examples a {
   margin: 1rem 0;
   padding: 0;
   display: flex;
   gap: 0.5rem;
   list-style: none;
+}
+
+.menu .active {
+  font-weight: bold;
+  color: green;
+  /* Or any other color for the active item */
 }
 
 #examples menu button {
